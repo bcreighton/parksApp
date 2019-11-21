@@ -1,0 +1,1 @@
+This application allows you to search for any parks in a given state across the US; using the national parks API.
