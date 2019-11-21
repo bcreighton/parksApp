@@ -10,7 +10,39 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    
+    <h1>National Parks Search Engine</h1>
+    <h3>Search for parks in one or more states across the US using the form below.</h3>
+
+    <form id="parkSearch">
+        <div class="parkSearchContainer">
+            <label for="parkField" class="searchLabel">Enter Park ID:</label>
+            <input type="text" class="searchField" id="parkField" name="parkField" required>
+
+            <label for="stateSelect" class="searchLabel">Select State:</label>
+            <select id="stateSelect" name="stateSelect" multiple required>
+                <option value="AL">AL</option>
+                <option value="AK">AK</option>
+                <option value="AZ">AZ</option>
+                <option value="AR">AR</option>
+                <option value="CA">CA</option>
+            </select>
+
+            <label for="maxResults" class="searchLabel">Max Parks:</label>
+            <input type="text" class="searchField" id="maxResults" name="maxResults" required>
+
+            <button type="submit">Search</button>
+        </div>
+    </form>
+
+    <section id="errorMessageContainer" class="hidden">
+        <p class="errorMessage"></p>
+    </section>
+
+    <section id="parkResultsContainer" class="hidden">
+        <ul class="parkResults"></ul>
+    </section>
+
+
     <script
         src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
