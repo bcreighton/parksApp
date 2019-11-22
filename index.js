@@ -1,11 +1,25 @@
 const apiUrl = 'https://developer.nps.gov/api/v1/parks';
 const apiKey = 'ZTxAxb3ljD6QPXSqoidY7AMKb8FWxPbjd0KNYj0W';
 
-  function getParks() {
+function formatParams(params){
+  const queryItems = Object.keys(params)
+    .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
+  return queryItems.join('&');
+}  
+
+function getParks(state, maxResults) {
     console.log('Parks are being generated...')
 
-    const url = apiUrl + '?stateCode=CO&limit=10&api_key=' + apiKey;
+    const params = {
+      api_key: apiKey,
+      stateCode: state,
+      limit: maxResults
+    };
 
+    const queryString = formatParams(params);
+    const url = apiUrl + '?' + queryString;
+
+    // header code not working...
     /* const options = {
         headers: new Headers({
           "X-Api-Key": apiKey})
@@ -35,8 +49,7 @@ function watchForm() {
         const state = $('#stateSelect').val();
         const maxResults = $('maxResults').val();
 
-        getParks();
-        //getParks(state, maxResults);
+        getParks(state, maxResults);
     })
 }
 
