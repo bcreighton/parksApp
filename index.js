@@ -40,12 +40,6 @@ function getParks(state, maxResults) {
     const queryString = formatParams(params);
     const url = apiUrl + '?' + queryString;
 
-    // header code not working...
-    /* const options = {
-        headers: new Headers({
-          "X-Api-Key": apiKey})
-      }; */
-
     const fetchParks = async () => {
       try {
         const parksRes = await fetch(url);
