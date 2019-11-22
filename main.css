@@ -1,3 +1,7 @@
 .hidden {
     display: none;
 }
+
+.parkAddress span{
+    font-weight: bold;
+}

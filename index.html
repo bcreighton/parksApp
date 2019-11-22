@@ -12,14 +12,15 @@
 <body>
     <h1>National Parks Search Engine</h1>
     <h3>Search for parks in one or more states across the US using the form below.</h3>
+    <p>To search for multiple states separate each state code with a "," or a space.</p>
 
     <form id="parkSearch">
         <div class="parkSearchContainer">
             <label for="state" class="searchLabel">Select State:</label>
-            <input type="text" class="searchField" id="state" name="state" maxlength="2" required>
+            <input type="text" class="searchField" id="state" name="state" placeholder="co" required>
 
             <label for="maxResults" class="searchLabel">Max Parks:</label>
-            <input type="number" class="searchField" id="maxResults" name="maxResults" min="1" max="50" required>
+            <input type="number" class="searchField" id="maxResults" name="maxResults" min="1" max="50" placeholder="10">
 
             <button type="submit">Search</button>
         </div>
