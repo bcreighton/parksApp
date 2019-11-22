@@ -14,13 +14,13 @@ function displayParks(stateParks, state) {
   //Create header
   $('#searchTitle').html(`Showing Parks In ${state}`);
 
-  for(let i = 0; i < stateParks.length; i++) {
+  for(let i = 0; i < stateParks.data.length; i++) {
     $('#parkResults').append(
       `<li class="parkItem">
-        <h3 class="parkTitle">${stateParks[i].fullName}</h3>
-        <p class="parkDescription">${stateParks[i].description}</p>
-        <a href='${stateParks[i].url}'><button class="parkBtn">More Details</button></a>
-        <a href='${stateParks[i].directionsUrl}'><button class="parkBtn">Get Directions</button></a>
+        <h3 class="parkTitle">${stateParks.data[i].fullName}</h3>
+        <p class="parkDescription">${stateParks.data[i].description}</p>
+        <a href='${stateParks.data[i].url}'><button class="parkBtn">More Details</button></a>
+        <a href='${stateParks.data[i].directionsUrl}'><button class="parkBtn">Get Directions</button></a>
       </li>`
     )
   }
@@ -30,7 +30,6 @@ function displayParks(stateParks, state) {
 }
 
 function getParks(state, maxResults) {
-    console.log('Parks are being generated...')
 
     const params = {
       api_key: apiKey,
@@ -50,7 +49,7 @@ function getParks(state, maxResults) {
     const fetchParks = async () => {
       try {
         const parksRes = await fetch(url);
-        debugger;
+
         if(!parksRes.ok) {
           throw new Error(parksRes.statusText);
         }
@@ -72,8 +71,6 @@ function getParks(state, maxResults) {
 function watchForm() {
     $('form').submit(event => {
         event.preventDefault();
-
-        console.log('Parks form has been submitted...');
 
         const state = $('#state').val();
         const maxResults = $('#maxResults').val();
