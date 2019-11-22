@@ -47,7 +47,7 @@ function watchForm() {
         console.log('Parks form has been submitted...');
 
         const state = $('#stateSelect').val();
-        const maxResults = $('maxResults').val();
+        const maxResults = $('#maxResults').val();
 
         getParks(state, maxResults);
     })
