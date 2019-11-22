@@ -16,10 +16,10 @@
     <form id="parkSearch">
         <div class="parkSearchContainer">
             <label for="state" class="searchLabel">Select State:</label>
-            <input type="text" class="searchField" id="state" name="state" required>
+            <input type="text" class="searchField" id="state" name="state" maxlength="2" required>
 
             <label for="maxResults" class="searchLabel">Max Parks:</label>
-            <input type="text" class="searchField" id="maxResults" name="maxResults" required>
+            <input type="number" class="searchField" id="maxResults" name="maxResults" min="1" max="50" required>
 
             <button type="submit">Search</button>
         </div>
