@@ -15,14 +15,8 @@
 
     <form id="parkSearch">
         <div class="parkSearchContainer">
-            <label for="stateSelect" class="searchLabel">Select State:</label>
-            <select id="stateSelect" name="stateSelect" multiple required>
-                <option value="AL">AL</option>
-                <option value="AK">AK</option>
-                <option value="AZ">AZ</option>
-                <option value="AR">AR</option>
-                <option value="CA">CA</option>
-            </select>
+            <label for="state" class="searchLabel">Select State:</label>
+            <input type="text" class="searchField" id="state" name="state" required>
 
             <label for="maxResults" class="searchLabel">Max Parks:</label>
             <input type="text" class="searchField" id="maxResults" name="maxResults" required>
@@ -32,11 +26,12 @@
     </form>
 
     <section id="errorMessageContainer" class="hidden">
-        <p class="errorMessage"></p>
+        <p id="errorMessage"></p>
     </section>
 
     <section id="parkResultsContainer" class="hidden">
-        <ul class="parkResults"></ul>
+        <h2 id="searchTitle"></h2>
+        <ul id="parkResults"></ul>
     </section>
 
 

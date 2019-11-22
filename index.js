@@ -7,6 +7,28 @@ function formatParams(params){
   return queryItems.join('&');
 }  
 
+function displayParks(stateParks, state) {
+  // clear any existing results
+  $('#parkResults').empty();
+
+  //Create header
+  $('#searchTitle').html(`Showing Parks In ${state}`);
+
+  for(let i = 0; i < stateParks.length; i++) {
+    $('#parkResults').append(
+      `<li class="parkItem">
+        <h3 class="parkTitle">${stateParks[i].fullName}</h3>
+        <p class="parkDescription">${stateParks[i].description}</p>
+        <a href='${stateParks[i].url}'><button class="parkBtn">More Details</button></a>
+        <a href='${stateParks[i].directionsUrl}'><button class="parkBtn">Get Directions</button></a>
+      </li>`
+    )
+  }
+
+  $('#parkResultsContainer').removeClass('hidden');
+
+}
+
 function getParks(state, maxResults) {
     console.log('Parks are being generated...')
 
@@ -28,12 +50,19 @@ function getParks(state, maxResults) {
     const fetchParks = async () => {
       try {
         const parksRes = await fetch(url);
+        debugger;
+        if(!parksRes.ok) {
+          throw new Error(parksRes.statusText);
+        }
         const stateParks = await parksRes.json();
 
-        console.log(stateParks);
+        displayParks(stateParks, state);
 
       } catch(e) {
-        console.log('something went wrong');
+        $('#errorMessage').empty()
+        .html('Something went wrong:' + e);
+
+        $('#errorMessageContainer').removeClass(hidden);
       }
     }
 
@@ -46,7 +75,7 @@ function watchForm() {
 
         console.log('Parks form has been submitted...');
 
-        const state = $('#stateSelect').val();
+        const state = $('#state').val();
         const maxResults = $('#maxResults').val();
 
         getParks(state, maxResults);
