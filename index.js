@@ -12,10 +12,13 @@ function formatParams(params){
   const queryItems = Object.keys(params)
     .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
   const queryString = queryItems.join('&');
-  if(queryString.includes('%2C') || queryString.includes('%20')){
-    return queryString.replace('%2C', '&stateCode=').replace('%20', '');
-  } else {
-    return queryString;
+
+  if(queryString.includes('%2C%20')){
+    return queryString.replace('%2C%20', '%2C');
+    } else if(queryString.includes('%20')){
+      return queryString.replace('%20', '%2C');
+    } else {
+      return queryString;
   }
 }  
 
@@ -24,7 +27,8 @@ function displayParks(stateParks, state) {
   $('#parkResults').empty();
 
   //Create header
-  $('#searchTitle').html(`Showing Parks In ${state}`);
+  const capState = state.toUpperCase();
+  $('#searchTitle').html(`Showing Parks In ${capState}`);
 
   for(let i = 0; i < stateParks.data.length; i++) {
     $('#parkResults').append(
